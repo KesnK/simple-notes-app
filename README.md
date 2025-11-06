@@ -28,10 +28,6 @@ Verify installations
 ionic –version # Should show: 7.2.1 (or similar)
 ng –version # Should show: 20.1.4 (or similar)
 ```
-Install NPM
-```
-npm install
-```
 (If Needed) Install Firebase
 ```
 npm install firebase @angular/fire
