@@ -15,22 +15,16 @@ cd simple-notes-app
 
 2. Install dependencies
 
-Install Ionic CLI globally
 ```
+npm install
 npm install -g @ionic/cli
-```
-Install Angular CLI globally
-```
 npm install -g @angular/cli
+npm install firebase @angular/fire
 ```
-Verify installations
+Verify installations (if you want)
 ```
 ionic –version # Should show: 7.2.1 (or similar)
 ng –version # Should show: 20.1.4 (or similar)
-```
-(If Needed) Install Firebase
-```
-npm install firebase @angular/fire
 ```
 
 3. Navigate to project folder (If not already in)
@@ -48,22 +42,17 @@ ionic serve
 1. Download zip + Extract zip
 2. Install dependencies
 
-Install Ionic CLI globally
 ```
+npm install
 npm install -g @ionic/cli
-```
-Install Angular CLI globally
-```
 npm install -g @angular/cli
+npm install firebase @angular/fire
 ```
+
 Verify installations
 ```
 ionic –version # Should show: 7.2.1 (or similar)
 ng –version # Should show: 20.1.4 (or similar)
-```
-(If Needed) Install Firebase
-```
-npm install firebase @angular/fire
 ```
 
 3. Navigate to project folder (If not already in)
