@@ -1,0 +1,79 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>My Notes</ion-title>
+
+    <!-- Dark Mode Toggle -->
+    <ion-buttons slot="end">
+      <ion-toggle
+        [(ngModel)]="isDarkMode"
+        (ionChange)="toggleDarkMode($event)"
+        color="light">
+      </ion-toggle>
+    </ion-buttons>
+
+    <!-- Logout Button with margin -->
+    <ion-buttons slot="end" style="margin-left: aupx;">
+      <ion-button fill="clear" (click)="logout()">
+        Logout
+        <ion-icon slot="end" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- SEARCH BAR -->
+  <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="onSearch($event)" placeholder="Search notes..." debounce="300"
+    class="custom-search">
+  </ion-searchbar>
+
+  <!-- CATEGORY FILTER -->
+  <ion-item lines="none" class="custom-filter-item">
+    <ion-label position="stacked">Filter by Category</ion-label>
+    <ion-select [(ngModel)]="selectedCategory" (ionChange)="onCategoryChange($event)" interface="popover">
+      <ion-select-option *ngFor="let cat of categories" [value]="cat">
+        {{ cat }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+
+  <!-- EMPTY STATE -->
+  <div *ngIf="notes.length === 0" class="ion-text-center ion-padding">
+    <p *ngIf="!searchTerm && selectedCategory === 'All'">No notes yet. Tap Add to create one!</p>
+    <p *ngIf else>No notes match your search.</p>
+  </div>
+
+  <!-- SWIPE TO DELETE LIST -->
+  <ion-list>
+    <ion-item-sliding *ngFor="let note of notes; trackBy: trackById">
+
+      <!-- MAIN ITEM (tap to edit) -->
+      <ion-item button (click)="viewNote(note)">
+        <ion-label class="ion-padding-start">
+          <h2>{{ note.title }}</h2>
+          <p>{{ note.content }}</p>
+          <ion-badge color="medium">{{ note.category }}</ion-badge>
+        </ion-label>
+      </ion-item>
+
+
+      <!-- SWIPE ACTION -->
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="deleteNote(note.id)">
+          DELETE
+        </ion-item-option>
+      </ion-item-options>
+
+    </ion-item-sliding>
+  </ion-list>
+
+  <!-- FAB -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button class="text-fab" (click)="goToAddNote()">
+      Add
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

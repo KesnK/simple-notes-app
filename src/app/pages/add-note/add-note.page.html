@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Note</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="stacked">Title</ion-label>
+    <ion-input [(ngModel)]="title"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Content</ion-label>
+    <ion-textarea [(ngModel)]="content" rows="6"></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Category</ion-label>
+    <ion-select [(ngModel)]="category" placeholder="Select category">
+      <ion-select-option value="General">General</ion-select-option>
+      <ion-select-option value="Work">Work</ion-select-option>
+      <ion-select-option value="Personal">Personal</ion-select-option>
+      <ion-select-option value="Ideas">Ideas</ion-select-option>
+      <ion-select-option value="Other">Other</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-button expand="block" (click)="save()">Save</ion-button>
+</ion-content>

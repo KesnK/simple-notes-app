@@ -1,0 +1,101 @@
+
+/* --- General Page Background --- */
+ion-content {
+  --background: var(--ion-background-color, #f4f4f4);
+}
+
+/* --- All ion-items (consistent padding and shape) --- */
+ion-item {
+  --padding-start: 20px;
+  --inner-padding-end: 20px;
+  border-radius: 16px;
+  margin: 12px 12px;
+  --min-height: 100px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: var(--ion-item-background, #fff);
+  transition: transform 0.15s ease;
+}
+
+ion-item:active {
+  transform: scale(0.98);
+}
+
+/* --- All ion-label headings and text --- */
+ion-label {
+  h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: var(--ion-color-medium);
+    margin: 0 0 6px 0;
+    line-height: 1.5;
+  }
+}
+
+/* --- Global Badge Size --- */
+ion-badge {
+  font-size: 1rem;
+  padding: 6px 14px;
+  border-radius: 10px;
+}
+
+/* --- Global Searchbar Style --- */
+ion-searchbar {
+  --border-radius: 16px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-size: 1.15rem;
+  height: 60px;
+}
+
+/* --- Global Toggle Style --- */
+ion-toggle {
+  --background: #666;
+  --background-checked: #3880ff;
+  --handle-background-checked: white;
+  transform: scale(1.2);
+}
+
+/* --- FAB Style (for Add / Edit buttons) --- */
+.text-fab {
+  --size: 78px;
+  --background: #2196f3;
+  --background-activated: #1976d2;
+  --box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+  --border-radius: 50%;
+  margin: 22px;
+  font-weight: 700;
+  font-size: 20px;
+  text-transform: uppercase;
+  color: white;
+}
+
+/* --- Empty State Shared Style --- */
+.empty-state {
+  text-align: center;
+  margin-top: 60px;
+  color: var(--ion-color-medium);
+
+  ion-icon {
+    font-size: 80px;
+    margin-bottom: 24px;
+  }
+
+  p {
+    font-size: 1.3rem;
+    line-height: 1.6;
+  }
+}
+
+/* --- Dark Mode Adjustments --- */
+body.dark ion-item {
+  background: #2a2a2a;
+  color: #fff;
+}
+body:not(.dark) ion-item {
+  background: #ffffff;
+  color: #000;
+}
