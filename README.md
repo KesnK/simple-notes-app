@@ -47,6 +47,7 @@ ionic serve
 
 1. Download zip + Extract zip
 2. Install dependencies
+
 Install Ionic CLI globally
 ```
 npm install -g @ionic/cli
