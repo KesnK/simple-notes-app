@@ -19,7 +19,7 @@ export class LoginPage {
   email = '';
   password = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   async login() {
     try {

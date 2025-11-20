@@ -29,5 +29,43 @@
     </ion-select>
   </ion-item>
 
+  <ion-item>
+    <ion-button expand="block" (click)="addAttachment()">Add Attachment</ion-button>
+  </ion-item>
+
+  <ion-list *ngIf="attachments.length > 0">
+    <ion-item *ngFor="let uri of attachments">
+      <ion-label>{{ uri.split('/').pop() }}</ion-label>
+      <ion-button fill="clear" color="primary" (click)="openAttachment(uri)">Open</ion-button>
+      <ion-button fill="clear" color="danger" (click)="removeAttachment(uri)">Remove</ion-button>
+    </ion-item>
+  </ion-list>
+
   <ion-button expand="block" (click)="save()">Save</ion-button>
 </ion-content>
+
+<ion-item *ngIf="!reminderDate">
+  <ion-label position="stacked">Set Reminder (Optional)</ion-label>
+  <ion-button expand="block">
+    Pick Date & Time
+    <ion-datetime-button datetime="reminder"></ion-datetime-button>
+  </ion-button>
+
+  <ion-modal [keepContentsMounted]="true">
+    <ng-template>
+      <ion-datetime id="reminder" [(ngModel)]="reminderDate" presentation="date-time" [min]="today" locale="en-US">
+      </ion-datetime>
+    </ng-template>
+  </ion-modal>
+</ion-item>
+
+<div *ngIf="reminderDate" class="ion-padding">
+  <ion-chip color="primary" outline>
+    <ion-icon name="alarm-outline"></ion-icon>
+    <ion-label>Reminder: {{ reminderDate | date:'MMM d, h:mm a' }}</ion-label>
+    <ion-icon name="close-circle" color="danger" (click)="cancelReminder()">
+    </ion-icon>
+  </ion-chip>
+
+
+</div>

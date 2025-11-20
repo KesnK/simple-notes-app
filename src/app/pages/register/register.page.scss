@@ -1,0 +1,49 @@
+
+/* --- General Page Background --- */
+ion-content {
+  --background: white;
+}
+
+:host-context(.dark) ion-content {
+  --background: #1e1e1e;
+  color: white;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+/* --- All ion-items (consistent padding and shape) --- */
+ion-item {
+  --color: black;
+  --background: white;
+  --padding-start: 20px;
+  --inner-padding-end: 20px;
+  --min-height: 100px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: var(--ion-item-background, #fff);
+  transition: transform 0.15s ease;
+}
+
+:host-context(.dark) ion-item {
+  --color: white;
+  --background: #1e1e1e;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+ion-item:active {
+  transform: scale(0.98);
+}
+
+/* --- All ion-label headings and text --- */
+ion-label {
+  h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: var(--ion-color-medium);
+    margin: 0 0 6px 0;
+    line-height: 1.5;
+  }
+}

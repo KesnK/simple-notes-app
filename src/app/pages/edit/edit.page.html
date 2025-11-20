@@ -29,4 +29,9 @@
     <ion-spinner *ngIf="loading" slot="start"></ion-spinner>
     {{ loading ? 'Saving...' : 'Update Note' }}
   </ion-button>
+  
+  <ion-button expand="block" (click)="shareNote()">
+    Share Note
+  </ion-button>
+
 </ion-content>

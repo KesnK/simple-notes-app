@@ -4,10 +4,7 @@
 
     <!-- Dark Mode Toggle -->
     <ion-buttons slot="end">
-      <ion-toggle
-        [(ngModel)]="isDarkMode"
-        (ionChange)="toggleDarkMode($event)"
-        color="light">
+      <ion-toggle [(ngModel)]="isDarkMode" (ionChange)="toggleDarkMode($event)" color="light">
       </ion-toggle>
     </ion-buttons>
 
@@ -29,7 +26,7 @@
   </ion-searchbar>
 
   <!-- CATEGORY FILTER -->
-  <ion-item lines="none" class="custom-filter-item">
+  <ion-item lines="none">
     <ion-label position="stacked">Filter by Category</ion-label>
     <ion-select [(ngModel)]="selectedCategory" (ionChange)="onCategoryChange($event)" interface="popover">
       <ion-select-option *ngFor="let cat of categories" [value]="cat">
@@ -45,24 +42,23 @@
     <p *ngIf else>No notes match your search.</p>
   </div>
 
-  <!-- SWIPE TO DELETE LIST -->
+  <!-- SWIPE TO DELETE -->
   <ion-list>
     <ion-item-sliding *ngFor="let note of notes; trackBy: trackById">
-
-      <!-- MAIN ITEM (tap to edit) -->
-      <ion-item button (click)="viewNote(note)">
-        <ion-label class="ion-padding-start">
+      <ion-item button (click)="viewNote(note)" lines="none" class="note-item">
+        <ion-label>
           <h2>{{ note.title }}</h2>
           <p>{{ note.content }}</p>
-          <ion-badge color="medium">{{ note.category }}</ion-badge>
+          <ion-badge [color]="getCategoryColor(note.category)">{{ note.category }}</ion-badge>
         </ion-label>
       </ion-item>
 
 
       <!-- SWIPE ACTION -->
       <ion-item-options side="end">
-        <ion-item-option color="danger" (click)="deleteNote(note.id)">
-          DELETE
+        <ion-item-option class="delete-option" color="danger" (click)="deleteNote(note.id)">
+          <ion-icon name="trash-outline"></ion-icon>
+          Delete
         </ion-item-option>
       </ion-item-options>
 
@@ -75,5 +71,10 @@
       Add
     </ion-fab-button>
   </ion-fab>
+
+  <!-- Mock AD Banner -->
+  <div class="mock-banner">
+    <p>Mock Ad Banner</p>
+  </div>
 
 </ion-content>

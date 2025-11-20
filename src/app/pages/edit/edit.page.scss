@@ -6,14 +6,20 @@ ion-content {
 
 /* --- All ion-items (consistent padding and shape) --- */
 ion-item {
+  --color: black;
+  --background: white;
   --padding-start: 20px;
   --inner-padding-end: 20px;
-  border-radius: 16px;
-  margin: 12px 12px;
   --min-height: 100px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   background: var(--ion-item-background, #fff);
   transition: transform 0.15s ease;
+}
+
+:host-context(.dark) ion-item {
+  --color: white;
+  --background: #1e1e1e;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
 }
 
 ion-item:active {

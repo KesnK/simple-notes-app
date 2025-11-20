@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Share } from '@capacitor/share';
+
 import {
   IonHeader, IonToolbar, IonTitle, IonContent,
   IonItem, IonLabel, IonInput, IonTextarea,
@@ -31,6 +33,7 @@ export class EditNotePage implements OnInit {
   category = 'General';
   categories = ['General', 'Work', 'Personal', 'Ideas', 'Other'];
   noteId!: string;  // Firebase uses string IDs
+  attachments: string[] = [];
   loading = false;
 
   constructor(
@@ -69,12 +72,31 @@ export class EditNotePage implements OnInit {
 
     this.loading = true;
     try {
-      await this.noteService.updateNote(this.noteId, { title: t, content: c, category: this.category });
+      await this.noteService.updateNote(this.noteId, {
+        title: t,
+        content: c,
+        category: this.category,
+        attachments: this.attachments
+      });
       this.router.navigate(['/home']);
     } catch (err) {
       console.error('Error updating note:', err);
     } finally {
       this.loading = false;
     }
+  }
+
+
+  async shareNote() {
+    if (!this.title && !this.content) {
+      alert('Nothing to share!');
+      return;
+    }
+
+    await Share.share({
+      title: this.title || 'My Note',
+      text: this.content || '',
+      dialogTitle: 'Share this note'
+    });
   }
 }

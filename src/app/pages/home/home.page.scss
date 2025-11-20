@@ -12,7 +12,6 @@
 
 .custom-filter-item {
   flex: 0 0 180px;
-  border-radius: 16px;
   background: var(--ion-item-background, #fff);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
   --inner-padding-start: 14px;
@@ -34,27 +33,37 @@
     flex-direction: column;
     align-items: stretch;
     gap: 14px;
-    margin: 0 12px 20px;
+    margin: 12px 20px;
   }
 }
 
-
-
 /* --- General Page Background --- */
 ion-content {
-  --background: var(--ion-background-color, #f4f4f4);
+  --background: white;
+}
+
+:host-context(.dark) ion-content {
+  --background: #1e1e1e;
+  color: white;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
 }
 
 /* --- All ion-items (consistent padding and shape) --- */
 ion-item {
+  --color: black;
+  --background: white;
   --padding-start: 20px;
   --inner-padding-end: 20px;
-  border-radius: 16px;
-  margin: 12px 12px;
   --min-height: 100px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   background: var(--ion-item-background, #fff);
   transition: transform 0.15s ease;
+}
+
+:host-context(.dark) ion-item {
+  --color: white;
+  --background: #1e1e1e;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
 }
 
 ion-item:active {
@@ -77,6 +86,41 @@ ion-label {
   }
 }
 
+/* Ion Note Items */
+.note-item {
+  --background: #ffffff;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+:host-context(.dark) .note-item {
+  --background: #1e1e1e;
+  color: white;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+.note-item ion-label h2 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.note-item ion-label p {
+  color: var(--ion-color-medium);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@supports not (-webkit-line-clamp: 2) {
+  .note-item ion-label p {
+    display: block;
+    line-height: 1.4;
+    max-height: calc(1.4em * 2);
+    overflow: hidden;
+    word-break: break-word;
+  }
+}
+
 /* --- Global Badge Size --- */
 ion-badge {
   font-size: 1rem;
@@ -86,10 +130,15 @@ ion-badge {
 
 /* --- Global Searchbar Style --- */
 ion-searchbar {
-  --border-radius: 16px;
-  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  font-size: 1.15rem;
-  height: 60px;
+  color: black;
+  --border-radius: 12px;
+  --box-shadow: 0 2px 8px rgba(20, 18, 18, 0.1);
+  margin-bottom: 12px;
+}
+
+:host-context(.dark) ion-searchbar {
+  --color: #ffffff;
+  --placeholder-color: #ffffff;
 }
 
 /* --- Global Toggle Style --- */
@@ -102,14 +151,15 @@ ion-toggle {
 
 /* --- FAB Style (for Add / Edit buttons) --- */
 .text-fab {
-  --size: 78px;
+  --size: 64px;
   --background: #2196f3;
   --background-activated: #1976d2;
-  --box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+  --box-shadow: none !important;
+  --ripple-color: transparent;
   --border-radius: 50%;
-  margin: 22px;
-  font-weight: 700;
-  font-size: 20px;
+  margin: 16px;
+  font-weight: 600;
+  font-size: 16px;
   text-transform: uppercase;
   color: white;
 }
@@ -131,12 +181,40 @@ ion-toggle {
   }
 }
 
-/* --- Dark Mode Adjustments --- */
-body.dark ion-item {
-  background: #2a2a2a;
-  color: #fff;
+/* Delete Option */
+.delete-option {
+  --background: linear-gradient(90deg, #d32f2f, #b71c1c);
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  transition: none !important;
+  /* removes all animation lag */
+  will-change: transform;
+  /* helps GPU render instantly */
+  transform: translateZ(0);
+  /* forces hardware acceleration */
+  transition-duration: 0s !important;
+  /* double-kill for safety */
+  transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
-body:not(.dark) ion-item {
-  background: #ffffff;
+
+:host-context(.dark) .delete-option {
+  --background: linear-gradient(90deg, #c62828, #8e0000);
+  color: black;
+}
+
+.mock-banner {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #f1c40f;
   color: #000;
+  text-align: center;
+  padding: 12px;
+  font-weight: bold;
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.2);
+  z-index: 1000;
 }

@@ -2,6 +2,7 @@ import { Component, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AdMob, BannerAdOptions, BannerAdPosition } from '@capacitor-community/admob';
 import {
   IonHeader, IonToolbar, IonTitle, IonContent,
   IonList, IonItem, IonLabel, IonButton, IonIcon,
@@ -135,4 +136,35 @@ export class HomePage {
   }
 
   trackById = (_: number, note: any) => note.id;
+  
+  getCategoryColor(cat: string): string {
+  switch ((cat || '').toLowerCase()) {
+    case 'general':
+      return 'primary';
+    case 'work':
+      return 'tertiary';
+    case 'personal':
+      return 'success';
+    case 'ideas':
+      return 'warning';
+    default:
+      return 'medium';
+  }
 }
+
+
+// Non Functional Ad Banner for Task 4
+async showBanner() {
+  await AdMob.showBanner({
+    adId: 'ca-app-pub-3940256099942544/6300978111',
+    position: BannerAdPosition.BOTTOM_CENTER,
+    isTesting: true, // set false for production
+  });
+}
+
+async hideBanner() {
+  await AdMob.hideBanner();
+}
+
+}
+
